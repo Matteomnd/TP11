@@ -17,19 +17,11 @@ class Duree :
         return 'Durée :'+str(self.__heure)+'h'+str(self.__minute)+'m'+str(self.__seconde)+'s'
 
     def __add__(self,d1):
-        heure = (self.__heure * 3600 +d1.__heure* 3600)/3600
-        minutes = (self.__minute*60 + d1.__minute * 60)/60
         secondes = self.__seconde + d1.__seconde
+        minutes = (self.__minute + d1.__minute ) + secondes//60
+        heure = (self.__heure + d1.__heure) + minutes //60
 
-        if minutes > 60 :
-           minutes = minutes *1/60
-           heure = int(minutes)
-           minutes = minutes - heure
-           minutes = minutes*60
-
-        if seconde > 60 :
-
-        return Duree(heure,minutes,secondes)
+        return Duree(heure,minutes%60,secondes%60)
 
 
 
